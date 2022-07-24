@@ -6,6 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 public class App {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BACK_TITLE
+            = "\u001B[46m";
+
+    public static final String ANSI_TITLE_FONT
+            = "\u001B[33m";
+    public static final String ANSI_TITLE_FONT_RESET
+            = "\u001B[0m";
+
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
 
@@ -31,11 +40,16 @@ public class App {
         // for(int i = 0; i < listFilms.size(); i++ ){
         // System.out.println(listFilms.get(key:));
         // }
-
+        System.out.println("TOP 10 - Melhores Filmes");
         for (Map<String, String> movie : listFilms) {
-            System.out.println(movie.get("title"));
-            System.out.println(movie.get("image"));
-            System.out.println(movie.get("imDbRating"));
+            System.out.println(ANSI_BACK_TITLE + movie.get("rank") + " ° " + "TÍTULO: " + movie.get("title") + ANSI_RESET);
+            System.out.print ("NOTA: " + movie.get("imDbRating") + " ");
+            Double rating = Double.parseDouble(movie.get("imDbRating"));
+            for (int count = 0; count <= rating; count++) {
+                System.out.print(ANSI_TITLE_FONT+"🌟"+ANSI_TITLE_FONT_RESET);
+            }
+            System.out.println("");
+            System.out.println("IMAGEM: " + movie.get("image"));
 
         }
 
